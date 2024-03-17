@@ -3,7 +3,7 @@
 FROM rocker/rstudio 
 
 #ENV DEBIAN_FRONTEND noninteractive
-ENV NCPUS=5
+ENV NCPUS=-1
 
 #Note: This layer is needed to get PYTHON PIP and PYTHON SETUPTOOLS upgraded. For some reason this can't be combined and it causes and error when using pip3.
 RUN mkdir -p /workdir && chmod 777 /workdir && \
