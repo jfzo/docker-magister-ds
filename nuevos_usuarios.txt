@@ -1,1 +1,2 @@
-juan:qwerty:Y
+royanedel:1004:1006:qwerty1234:Y
+juan:1001:1001:qwerty123:Y

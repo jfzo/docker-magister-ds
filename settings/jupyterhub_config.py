@@ -679,6 +679,7 @@ c.Spawner.notebook_dir = '~'
 #  
 #  If empty, does not perform any additional restriction.
 #c.Authenticator.whitelist = set()
+c.Authenticator.allow_all = True
 
 #------------------------------------------------------------------------------
 # LocalAuthenticator(Authenticator) configuration

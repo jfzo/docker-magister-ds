@@ -54,4 +54,5 @@ EXPOSE 8888
 
 #CMD "/scripts/sys/init.sh"
 # define entrypoint command
+USER root
 CMD ["/bin/bash", "/scripts/sys/init.sh"]

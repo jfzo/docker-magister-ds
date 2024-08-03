@@ -10,12 +10,14 @@ else
 fi
 
 echo 'Configuring shared folder…'
-groupadd jupyterhub-users
+groupadd --gid 9999 jupyterhub-users
 
 mkdir -p /srv/scratch
 chown -R root:jupyterhub-users /srv/scratch
 chmod 777 /srv/scratch
 chmod g+s /srv/scratch
+
+chown -R 0:0 /home
 
 #CREATE USERS.
 # username:passsword:Y
@@ -26,15 +28,16 @@ cat $file
 
 if [ -f $file ]
   then
-    while IFS=: read -r username password is_sudo
+    while IFS=: read -r username useruid usergid password is_sudo
         do
-            echo "Username: $username, Password: $password , Sudo: $is_sudo"
+            echo "Username: $username, UserID: $useruid, GroupID: $usergid, Password: $password , Sudo: $is_sudo"
 
             if getent passwd $username > /dev/null 2>&1
               then
                 echo "User Exists"
               else
-                useradd -ms /bin/bash $username
+		addgroup --gid $usergid $username
+                useradd -ms /bin/bash --uid $useruid --gid $usergid $username
                 usermod -aG audio $username
                 usermod -aG video $username
                 mkdir -p /run/user/$(id -u $username)/dbus-1/
